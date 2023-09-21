@@ -32,14 +32,15 @@
     protected override async Task OnInitializedAsync()
     {
         var response =
-            await Http.GetAsync("Categoria/listar");
+            await Http.GetAsync("api/Categoria/listar");
 
-        var content =
-            await response.Content.ReadAsStringAsync();
+        var content = await response.Content.ReadAsStringAsync();
+        
+        var options = 
+            new JsonSerializerOptions 
+            { PropertyNameCaseInsensitive = true };
 
         categorias = JsonSerializer.
-            Deserialize<List<Categoria>>(content);
-
-        base.OnInitializedAsync();
+            Deserialize<List<Categoria>>(content, options);
     }
 }

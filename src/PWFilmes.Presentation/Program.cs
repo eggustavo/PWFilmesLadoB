@@ -20,7 +20,7 @@ namespace PWFilmes.Presentation
             builder.Services.
                 AddScoped(sp => new HttpClient 
                   { BaseAddress = 
-                     new Uri("https://localhost:44376/api")
+                     new Uri("https://localhost:44376")
                   });
 
             await builder.Build().RunAsync();
