@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PWFilmes.API.Migrations
 {
-    public partial class CriacaoCategoria : Migration
+    public partial class CriarTabelaCategoria : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
