@@ -20,32 +20,22 @@ namespace PWFilmes.API.Controllers
         [HttpGet("listar")]
         public IActionResult Listar()
         {
-            _context.CategoriaSet.ToList();
-
-            List<Categoria> categorias = new List<Categoria>();
-            categorias.Add(
-                new Categoria { Codigo = 1, Descricao = "Terror", Cor = "Vermelho" });
-
-            categorias.Add(
-                new Categoria { Codigo = 2, Descricao = "Suspense", Cor = "Azul" });
-
-            return Ok(categorias);
+            return Ok(_context.CategoriaSet.AsEnumerable());
         }
 
         [HttpGet("obter/{codigo}")]
         public IActionResult Obter(int codigo)
         {
-            List<Categoria> categorias = new List<Categoria>();
-            categorias.Add(
-                new Categoria { Codigo = 1, Descricao = "Terror", Cor = "Vermelho" });
+            return Ok(_context.CategoriaSet.Find(codigo));
+        }
 
-            categorias.Add(
-                new Categoria { Codigo = 2, Descricao = "Suspense", Cor = "Azul" });
+        [HttpPost("adicionar")]
+        public IActionResult Adicionar(Categoria categoria)
+        {
+            _context.CategoriaSet.Add(categoria);
+            _context.SaveChanges();
 
-            Categoria cat = 
-                categorias.FirstOrDefault(p => p.Codigo == codigo);
-
-            return Ok(cat);
+            return Created("Created", $"Categoria {categoria.Codigo} Adicionada com Sucesso.");
         }
     }
 }
