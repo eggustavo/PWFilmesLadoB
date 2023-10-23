@@ -1,0 +1,56 @@
+﻿@page "/categoria-nova"
+@using PWFilmes.Domain
+
+<h3>CategoriaNova</h3>
+
+
+<EditForm Model="categoriaModel">
+    <RadzenRow>
+        <RadzenColumn Size="12" SizeMD="6" SizeLG="9">
+            <RadzenFormField Text="Descrição" Style="width: 100%;">
+                <RadzenTextBox Style="width: 100%;" />
+            </RadzenFormField>
+        </RadzenColumn>
+    </RadzenRow>
+</EditForm>
+
+
+
+
+
+
+
+
+
+@*<EditForm Model="@categoriaModel" OnValidSubmit="Confirmar">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <RadzenNotification />
+
+        <RadzenRow>
+            <RadzenColumn Size="12" SizeMD="6" SizeLG="9">
+                <RadzenFormField Text="Descrição" Style="width: 100%;">
+                    <RadzenTextBox @bind-Value="@categoriaModel.Descricao" Style="width: 100%;" />
+                </RadzenFormField>
+                <ValidationMessage For=@(() => categoriaModel.Descricao) />
+            </RadzenColumn>
+            <RadzenColumn Size="12" SizeMD="6" SizeLG="3">
+                <RadzenFormField Text="Cor" Style="width: 100%;">
+                    <RadzenColorPicker @bind-Value=@categoriaModel.Cor ShowHSV="true" ShowRGBA="true" ShowColors="true" ShowButton="true" Style="width: 100%;" />
+                </RadzenFormField>
+                <ValidationMessage For=@(() => categoriaModel.Cor) />
+            </RadzenColumn>
+        </RadzenRow>
+
+        <RadzenStack Orientation="Orientation.Horizontal" JustifyContent="JustifyContent.End" Style="width: 100%;" class="rz-mt-4">
+            <RadzenButton Icon="delete_forever" ButtonStyle="ButtonStyle.Danger" Text="Cancelar" Click="Cancelar" class="rz-border-radius-10" />
+            <RadzenButton Icon="delete_forever" ButtonStyle="ButtonStyle.Success" Text="Confirmar" ButtonType="ButtonType.Submit" class="rz-border-radius-10" />
+        </RadzenStack>
+    </EditForm>*@
+
+
+
+@code {
+    Categoria categoriaModel = new Categoria();
+
+}
