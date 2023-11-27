@@ -1,19 +1,21 @@
-﻿@page "/categoria-editar"
+﻿@page "/categoria-editar/{codigoCategoria:int}"
 
 @using PWFilmes.Domain;
+@using System.Text.Json;
+
+@inject HttpClient Http;
 
 <h3>Editar Categoria</h3>
 
-<EditForm Model="categoriaModel">
+<EditForm Model="@categoriaModel" Context="">    
     <DataAnnotationsValidator />
     <ValidationSummary />
-    
+
     <RadzenRow class="rz-mb-4">
         <RadzenColumn Size="2">
             <RadzenFormField Text="Código"
                              Style="width: 100%;">
-                <RadzenNumeric
-                               @bind-Value="categoriaModel.Codigo"
+                <RadzenNumeric @bind-Value="categoriaModel.Codigo"
                                Style="width: 100%;"
                                Disabled />
             </RadzenFormField>
@@ -55,9 +57,18 @@
     </RadzenStack>
 </EditForm>
 
-
 @code {
-    Categoria categoriaModel = new Categoria();
+    [Parameter]
+    public int codigoCategoria { get; set; }
+    Categoria categoriaModel;
 
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await Http.GetAsync($"api/Categoria/obter/{codigoCategoria}");
+        var content = await response.Content.ReadAsStringAsync();
+        var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+        categoriaModel = JsonSerializer.Deserialize<Categoria>(content, options);
 
+        await base.OnInitializedAsync();
+    }
 }
